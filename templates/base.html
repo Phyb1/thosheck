@@ -1,0 +1,171 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO: Title + Meta -->
+  <title>{% block title %}{% trans "Thosheck Pharmacy | Trusted Healthcare for Zimbabwe" %}{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}{% trans "Thosheck Pharmacy provides trusted pharmaceutical products, health consultations, and wellness solutions across Zimbabwe. Your health is our priority." %}{% endblock %}">
+  <meta name="keywords" content="{% trans "Zimbabwe pharmacy, pharmaceutical products, healthcare Zimbabwe, prescription medicine, wellness, Thosheck Pharmacy" %}">
+  <meta name="author" content="Thosheck Pharmacy">
+  <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+  <!-- SEO: Hreflang for language versions -->
+  {% get_language_info_list for LANGUAGES as language_info %}
+  {% for lang in language_info %}
+    <link rel="alternate" hreflang="{{ lang.code }}" href="{{ request.scheme }}://{{ request.get_host }}/{{ lang.code }}{{ request.path|slice:'3:' }}">
+  {% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path|slice:'3:' }}">
+
+  <!-- Open Graph for social sharing -->
+  <meta property="og:title" content="{% block og_title %}{% trans "Thosheck Pharmacy" %}{% endblock %}">
+  <meta property="og:description" content="{% block og_description %}{% trans "Caring for Zimbabwe's health, one patient at a time." %}{% endblock %}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.build_absolute_uri }}">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --tp-blue: #1A5276;
+      --tp-teal: #148F77;
+      --tp-light: #EAF4F4;
+      --tp-gold: #D4AC0D;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .bg-tp { background-color: var(--tp-blue); }
+    .text-tp { color: var(--tp-blue); }
+    .text-tp-teal { color: var(--tp-teal); }
+
+    .btn-tp {
+      background-color: var(--tp-teal);
+      border-color: var(--tp-teal);
+      color: #fff;
+      font-weight: 500;
+    }
+    .btn-tp:hover {
+      background-color: #0e6b5a;
+      border-color: #0e6b5a;
+      color: #fff;
+    }
+
+    .navbar-brand span {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-link.text-white:hover {
+      color: var(--tp-gold) !important;
+      transition: color 0.2s ease;
+    }
+
+    .lang-switch select {
+      font-size: 0.875rem;
+    }
+
+    /* Cross icon for pharmacy branding */
+    .pharmacy-cross {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      background-color: #fff;
+      border-radius: 6px;
+      margin-right: 8px;
+    }
+    .pharmacy-cross svg {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-tp shadow-sm">
+    <div class="container">
+      <a class="navbar-brand text-white d-flex align-items-center" href="{% url 'home' %}">
+        <!-- Pharmacy cross icon -->
+        <span class="pharmacy-cross">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="9" y="2" width="6" height="20" rx="1.5" fill="#1A5276"/>
+            <rect x="2" y="9" width="20" height="6" rx="1.5" fill="#1A5276"/>
+          </svg>
+        </span>
+        <span>Thosheck <span style="color: var(--tp-gold);">Pharmacy</span></span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans 'Toggle navigation' %}">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav ms-auto align-items-center gap-2">
+          <a class="nav-link text-white" href="{% url 'home' %}">{% trans "Home" %}</a>
+          <a class="nav-link text-white" href="{% url 'about' %}">{% trans "About Us" %}</a>
+          <a class="nav-link text-white" href="{% url 'services' %}">{% trans "Services" %}</a>
+          <a class="nav-link text-white" href="{% url 'products' %}">{% trans "Products" %}</a>
+          <a class="nav-link text-white" href="{% url 'branches' %}">{% trans "Branches" %}</a>
+          <a class="nav-link text-white" href="{% url 'contact' %}">{% trans "Contact" %}</a>
+
+       {% comment %}
+          <!-- Language Switcher -->
+          <form action="{% url 'set_language' %}" method="post" class="lang-switch d-flex ms-2">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.get_full_path }}">
+            <select name="language" class="form-select form-select-sm" onchange="this.form.submit()"
+                    aria-label="{% trans 'Language' %}">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% for code, name in LANGUAGES %}
+                <option value="{{ code }}" {% if code == LANGUAGE_CODE %}selected{% endif %}>{{ name }}</option>
+              {% endfor %}
+            </select>
+          </form>
+{% endcomment %}
+
+          <button id="themeToggle" class="btn btn-sm btn-outline-light ms-2"
+                  title="{% trans 'Toggle dark/light mode' %}">◐</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container text-center">
+      <p class="mb-1 small fw-500">
+        © {% now "Y" %} {% trans "Thosheck Pharmacy" %} &mdash;
+        {% trans "Your trusted health partner in Zimbabwe." %}
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Dark/light mode toggle with localStorage persistence
+    const toggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-bs-theme', saved);
+
+    toggle.onclick = () => {
+      const current = html.getAttribute('data-bs-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      html.setAttribute('data-bs-theme', next);
+      localStorage.setItem('theme', next);
+    };
+  </script>
+</body>
+</html>

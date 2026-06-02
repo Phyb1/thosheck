@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Our Services | Thosheck Pharmacies" %}{% endblock %}
+{% block meta_description %}{% trans "Thosheck Pharmacies offers prescription dispensing, chronic disease management, health consultations, and a wide range of wellness products across Zimbabwe." %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="text-tp text-center mb-5">{% trans "Our Services" %}</h1>
+  <div class="row g-4">
+
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body p-4">
+          <div class="mb-3" style="font-size: 2rem;">💊</div>
+          <h3 class="text-tp">{% trans "Prescription Dispensing" %}</h3>
+          <p>{% trans "Bring your prescription and leave with confidence. Our qualified pharmacists verify every script carefully, counsel you on usage, and ensure you get exactly what your doctor ordered." %}</p>
+          <ul class="text-muted">
+            <li>{% trans "Accurate dispensing by registered pharmacists" %}</li>
+            <li>{% trans "Patient counselling on dosage and side effects" %}</li>
+            <li>{% trans "Private and confidential service" %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body p-4">
+          <div class="mb-3" style="font-size: 2rem;">🩺</div>
+          <h3 class="text-tp">{% trans "Chronic Disease Management" %}</h3>
+          <p>{% trans "Living with a long-term condition? We make it easier. Our chronic care programme provides regular medication refills, monitoring support, and pharmacist check-ins to keep you on track." %}</p>
+          <ul class="text-muted">
+            <li>{% trans "Support for diabetes, hypertension, and asthma" %}</li>
+            <li>{% trans "Scheduled refill reminders" %}</li>
+            <li>{% trans "Medical aid billing and management" %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body p-4">
+          <div class="mb-3" style="font-size: 2rem;">🧴</div>
+          <h3 class="text-tp">{% trans "Wellness & OTC Products" %}</h3>
+          <p>{% trans "From vitamins and supplements to skincare and baby products, our shelves are stocked with trusted health and wellness brands to support your everyday wellbeing." %}</p>
+          <ul class="text-muted">
+            <li>{% trans "Vitamins, minerals, and immune support" %}</li>
+            <li>{% trans "Personal care and hygiene products" %}</li>
+            <li>{% trans "Mother and baby healthcare range" %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body p-4">
+          <div class="mb-3" style="font-size: 2rem;">🗣️</div>
+          <h3 class="text-tp">{% trans "Pharmacist Consultations" %}</h3>
+          <p>{% trans "Not sure what you need? Our pharmacists are available for walk-in consultations on minor ailments, medication interactions, and general health advice — no appointment needed." %}</p>
+          <ul class="text-muted">
+            <li>{% trans "Minor ailment assessment and advice" %}</li>
+            <li>{% trans "Medication review and interaction checks" %}</li>
+            <li>{% trans "Referrals to specialists when needed" %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

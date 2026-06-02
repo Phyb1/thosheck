@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}500 - Server Error{% endblock %}
+{% block content %}
+<div class="error-page">
+  <h1>500</h1>
+  <h2>Something broke</h2>
+  <p>We hit an unexpected error. The admin has been notified.</p>
+  <a href="/" class="btn btn-primary">Go Home</a>
+</div>
+<style>
+.error-page { text-align: center; padding: 60px 20px; }
+.error-page h1 { font-size: 72px; margin: 0; color: #d32f2f; }
+</style>
+{% endblock %}

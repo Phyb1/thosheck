@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "About Us | Thosheck Pharmacies — Trusted Healthcare in Zimbabwe" %}{% endblock %}
+{% block meta_description %}{% trans "For over 20 years, Thosheck Pharmacies has been Zimbabwe's trusted healthcare partner. Qualified pharmacists, genuine medicines, and compassionate patient care." %}{% endblock %}
+{% block og_title %}{% trans "About Thosheck Pharmacies" %}{% endblock %}
+{% block og_description %}{% trans "We go beyond dispensing medicine. From chronic disease management to wellness advice, Thosheck Pharmacies puts patients first across every branch." %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row align-items-center">
+    <div class="col-lg-7">
+      <h1 class="text-tp display-5 fw-bold mb-3">{% trans "Caring for Zimbabwe, One Patient at a Time" %}</h1>
+      <p class="lead">{% trans "For over 20 years, Thosheck Pharmacies has been a trusted name in Zimbabwean healthcare — combining qualified expertise with genuine compassion." %}</p>
+      <p>{% trans "We go beyond simply dispensing medicine. Whether you're managing a chronic condition, seeking advice on a minor ailment, or stocking up on everyday wellness products, our trained pharmacists are here to guide you with care, accuracy, and confidentiality." %}</p>
+
+      <div class="row mt-4">
+        <div class="col-4">
+          <h3 class="text-tp-teal fw-bold">20+</h3>
+          <p class="text-muted small">{% trans "Years of Service" %}</p>
+        </div>
+        <div class="col-4">
+          <h3 class="text-tp-teal fw-bold">5</h3>
+          <p class="text-muted small">{% trans "Branch Locations" %}</p>
+        </div>
+        <div class="col-4">
+          <h3 class="text-tp-teal fw-bold">50k+</h3>
+          <p class="text-muted small">{% trans "Patients Served" %}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-5 mt-4 mt-lg-0">
+      <div class="card shadow border-0" style="border-left: 5px solid var(--tp-teal);">
+        <div class="card-body p-4">
+          <h4 class="text-tp mb-3">{% trans "Our Promise to You" %}</h4>
+          <ul class="list-unstyled mb-0">
+            <li class="mb-2">✓ {% trans "Genuine, quality-assured medicines" %}</li>
+            <li class="mb-2">✓ {% trans "Qualified pharmacists on duty at all times" %}</li>
+            <li class="mb-2">✓ {% trans "Private consultations and chronic care support" %}</li>
+            <li class="mb-2">✓ {% trans "Affordable pricing and medical aid acceptance" %}</li>
+            <li class="mb-2">✓ {% trans "Fast, friendly service at every branch" %}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

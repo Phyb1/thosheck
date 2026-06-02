@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Thosheck Pharmacies | Your Trusted Health Partner in Zimbabwe" %}{% endblock %}
+{% block meta_description %}{% trans "Thosheck Pharmacies offers quality medicines, qualified pharmacists, and compassionate patient care across Zimbabwe. Prescription dispensing, chronic care, and wellness products." %}{% endblock %}
+{% block og_title %}{% trans "Thosheck Pharmacies | Zimbabwe" %}{% endblock %}
+{% block og_description %}{% trans "Genuine medicines. Qualified care. Serving Zimbabwe for over 20 years." %}{% endblock %}
+
+{% block content %}
+
+<!-- Hero -->
+<div class="bg-tp text-white py-5">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold">{% trans "Thosheck Pharmacies" %}</h1>
+    <p class="lead">{% trans "Genuine medicines. Qualified care. Serving Zimbabwe for over 20 years." %}</p>
+    <a href="{% url 'contact' %}" class="btn btn-tp btn-lg mt-2">{% trans "Find a Branch" %}</a>
+  </div>
+</div>
+
+<!-- Service Cards -->
+<div class="container py-5">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h3 class="text-tp">{% trans "Prescription Dispensing" %}</h3>
+          <p>{% trans "Fast, accurate dispensing of prescription and over-the-counter medicines by our qualified pharmacists." %}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h3 class="text-tp">{% trans "Chronic Care Management" %}</h3>
+          <p>{% trans "Ongoing support for patients managing long-term conditions such as diabetes, hypertension, and asthma." %}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="card-body">
+          <h3 class="text-tp">{% trans "Wellness & Health Products" %}</h3>
+          <p>{% trans "A wide range of vitamins, supplements, personal care, and baby health products available in every branch." %}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

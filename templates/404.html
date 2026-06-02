@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}404 - Not Found{% endblock %}
+{% block content %}
+<div class="error-page">
+  <h1>404</h1>
+  <h2>not found</h2>
+  <p>The page you’re looking for doesn’t exist.</p>
+  <a href="{% url 'tracker:bale_list' %}" class="btn btn-primary">Back to Bales</a>
+</div>
+<style>
+.error-page { text-align: center; padding: 60px 20px; }
+.error-page h1 { font-size: 72px; margin: 0; color: #d32f2f; }
+.error-page h2 { margin-top: 10px; }
+</style>
+{% endblock %}

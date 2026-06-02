@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Contact Us | Thosheck Pharmacies" %}{% endblock %}
+{% block meta_description %}{% trans "Get in touch with Thosheck Pharmacies. Find our branch locations, pharmacist helpline, and send us a message for prescriptions, stock enquiries, or general support." %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-6">
+      <h1 class="text-tp mb-4">{% trans "Get in Touch" %}</h1>
+      <p class="lead mb-4">{% trans "Questions about prescriptions, stock availability, or our services? Our team is ready to help." %}</p>
+
+      <div class="mb-4">
+        <h5 class="text-tp">{% trans "Head Office" %}</h5>
+        <p>{% trans "Harare Central, Harare" %}<br>{% trans "Zimbabwe" %}</p>
+      </div>
+
+      <div class="mb-4">
+        <h5 class="text-tp">{% trans "Patient Helpline" %}</h5>
+        <p>+263 77 123 4567<br>
+          <small class="text-muted">{% trans "Available 0800–1800, Monday to Saturday" %}</small>
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <h5 class="text-tp">{% trans "Email" %}</h5>
+        <p><a href="mailto:info@thosheck.co.zw" class="text-tp-teal text-decoration-none">info@thosheck.co.zw</a></p>
+      </div>
+
+      <div class="mt-5 p-4 bg-light rounded" style="border-left: 4px solid var(--tp-teal);">
+        <h5 class="text-tp">{% trans "How Can We Help?" %}</h5>
+        <p class="mb-0">{% trans "Whether you need advice on a new prescription, want to check if a medication is in stock, or have a question about chronic disease management — our pharmacists are here for you at every branch." %}</p>
+      </div>
+    </div>
+
+    <div class="col-lg-6 mt-4 mt-lg-0">
+      <div class="card shadow border-0">
+        <div class="card-body p-4">
+          <h4 class="text-tp mb-4">{% trans "Send Us a Message" %}</h4>
+          <form>
+            <div class="mb-3">
+              <label class="form-label">{% trans "Full Name" %}</label>
+              <input type="text" class="form-control" placeholder="{% trans 'Your name' %}">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">{% trans "Phone Number" %}</label>
+              <input type="tel" class="form-control" placeholder="+263...">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">{% trans "Subject" %}</label>
+              <select class="form-select">
+                <option>{% trans "Prescription Enquiry" %}</option>
+                <option>{% trans "Stock Availability" %}</option>
+                <option>{% trans "Chronic Medication Refill" %}</option>
+                <option>{% trans "Medical Aid & Billing" %}</option>
+                <option>{% trans "General Question" %}</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">{% trans "Message" %}</label>
+              <textarea class="form-control" rows="4" placeholder="{% trans 'How can we help you?' %}"></textarea>
+            </div>
+            <button type="submit" class="btn btn-tp w-100">{% trans "Send Message" %}</button>
+            <small class="text-muted mt-2 d-block">{% trans "*This is a prototype. Form will be functional in production." %}</small>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
