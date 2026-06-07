@@ -1,10 +1,8 @@
 import os
 import sys
 
-# Add project to path
-sys.path.insert(0, os.path.dirname(__file__))
+sys.path.insert(0, '/home/mathxuco/thosheck/public_html')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'yourprojectname.settings'
 
-# Set settings module
-os.environ['DJANGO_SETTINGS_MODULE'] = 'thosheck.settings.prod'
-
-from thosheck.wsgi import application
+from django.core.wsgi import get_wsgi_application
+application = get_wsgi_application()
