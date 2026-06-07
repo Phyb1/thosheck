@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+{% block title %}{% trans "Products & Services | Thosheck Pharmacies" %}{% endblock %}
+{% block meta_description %}{% trans "Browse pharmacy products and health services. Visit our Harare pharmacies with professional pharmacists." %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">{% trans "Products & Services" %}</h1>
+  <p class="lead mb-5">{% trans "Quality medications, medical devices, and professional health services from our Harare pharmacies." %}</p>
+
+  <!-- Hero image with WebP + lazy load -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <picture>
+        <source srcset="{% static 'images/products/pharmacy-counter.webp' %}" type="image/webp">
+        <img src="{% static 'images/products/pharmacy-counter.jpg' %}" 
+             alt="{% trans 'Thosheck Pharmacy counter with professional pharmacist' %}"
+             class="img-fluid rounded shadow w-100"
+             style="max-height: 400px; object-fit: cover;"
+             loading="lazy"
+             width="1200" height="400">
+      </picture>
+      <p class="text-muted small mt-2 text-center">
+        {% trans "Our professional team ready to assist you" %}
+      </p>
+    </div>
+  </div>
+
+  <!-- Products grid with shelves image -->
+  <div class="row mb-5">
+    <div class="col-md-6 mb-4">
+      <h3>{% trans "Medications & OTC" %}</h3>
+      <p>{% trans "Prescription medicines, Panadol, cough syrup, vitamins, and supplements. All stocked fresh and stored properly." %}</p>
+      <picture>
+        <source srcset="{% static 'images/products/shelves-medication.webp' %}" type="image/webp">
+        <img src="{% static 'images/products/shelves-medication.jpg' %}" 
+             alt="{% trans 'Pharmacy shelves with medications and health products' %}"
+             class="img-fluid rounded shadow mt-3"
+             loading="lazy"
+             width="600" height="400">
+      </picture>
+    </div>
+    <div class="col-md-6 mb-4">
+      <h3>{% trans "Health Services" %}</h3>
+      <ul class="list-unstyled">
+        <li>✓ {% trans "Blood pressure & glucose checks" %}</li>
+        <li>✓ {% trans "Prescription dispensing" %}</li>
+        <li>✓ {% trans "Health advice & counseling" %}</li>
+        <li>✓ {% trans "Medication reviews" %}</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="row mt-5">
+    <div class="col-12 text-center">
+      <a href="{% url 'contact' %}" class="btn btn-primary btn-lg">{% trans "Ask About Stock" %}</a>
+      <a href="{% url 'branches' %}" class="btn btn-outline-secondary btn-lg ms-2">{% trans "Visit Us" %}</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block title %}{% trans "Contact Us | Thosheck Pharmacies" %}{% endblock %}
-{% block meta_description %}{% trans "Get in touch with Thosheck Pharmacies. Find our branch locations, pharmacist helpline, and send us a message for prescriptions, stock enquiries, or general support." %}{% endblock %}
+{% block meta_description %}{% trans "Get in touch with Thosheck Pharmacies." %}{% endblock %}
 
 {% block content %}
 <div class="container py-5">
@@ -18,19 +18,14 @@
 
       <div class="mb-4">
         <h5 class="text-tp">{% trans "Patient Helpline" %}</h5>
-        <p>+263 77 123 4567<br>
+        <p>+263 {{ contact_whatsapp|slice:"3:" }}<br>
           <small class="text-muted">{% trans "Available 0800–1800, Monday to Saturday" %}</small>
         </p>
       </div>
 
       <div class="mb-4">
         <h5 class="text-tp">{% trans "Email" %}</h5>
-        <p><a href="mailto:info@thosheck.co.zw" class="text-tp-teal text-decoration-none">info@thosheck.co.zw</a></p>
-      </div>
-
-      <div class="mt-5 p-4 bg-light rounded" style="border-left: 4px solid var(--tp-teal);">
-        <h5 class="text-tp">{% trans "How Can We Help?" %}</h5>
-        <p class="mb-0">{% trans "Whether you need advice on a new prescription, want to check if a medication is in stock, or have a question about chronic disease management — our pharmacists are here for you at every branch." %}</p>
+        <p><a href="mailto:{{ contact_email }}" class="text-tp-teal text-decoration-none">{{ contact_email }}</a></p>
       </div>
     </div>
 
@@ -38,31 +33,65 @@
       <div class="card shadow border-0">
         <div class="card-body p-4">
           <h4 class="text-tp mb-4">{% trans "Send Us a Message" %}</h4>
-          <form>
+
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} mb-3">{{ message }}</div>
+            {% endfor %}
+          {% endif %}
+
+          <!-- WhatsApp button shows only after successful submit -->
+          {% if wa_link %}
+            <a href="{{ wa_link }}" target="_blank" rel="noopener" class="btn-whatsapp w-100 mb-3">
+              {% trans "Chat with us on WhatsApp" %}
+            </a>
+          {% endif %}
+
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger mb-3">{{ form.non_field_errors|striptags }}</div>
+          {% endif %}
+
+          <form method="post" novalidate>
+            {% csrf_token %}
+
             <div class="mb-3">
-              <label class="form-label">{% trans "Full Name" %}</label>
-              <input type="text" class="form-control" placeholder="{% trans 'Your name' %}">
+              {{ form.name.label_tag }}
+              {{ form.name }}
+              {% if form.name.errors %}
+                <span class="error">{{ form.name.errors|striptags }}</span>
+              {% endif %}
             </div>
+
             <div class="mb-3">
-              <label class="form-label">{% trans "Phone Number" %}</label>
-              <input type="tel" class="form-control" placeholder="+263...">
+              {{ form.phone.label_tag }}
+              {{ form.phone }}
+              {% if form.phone.errors %}
+                <span class="error">{{ form.phone.errors|striptags }}</span>
+              {% endif %}
             </div>
+
             <div class="mb-3">
-              <label class="form-label">{% trans "Subject" %}</label>
-              <select class="form-select">
-                <option>{% trans "Prescription Enquiry" %}</option>
-                <option>{% trans "Stock Availability" %}</option>
-                <option>{% trans "Chronic Medication Refill" %}</option>
-                <option>{% trans "Medical Aid & Billing" %}</option>
-                <option>{% trans "General Question" %}</option>
-              </select>
+              {{ form.subject.label_tag }}
+              {{ form.subject }}
+              {% if form.subject.errors %}
+                <span class="error">{{ form.subject.errors|striptags }}</span>
+              {% endif %}
             </div>
+
             <div class="mb-3">
-              <label class="form-label">{% trans "Message" %}</label>
-              <textarea class="form-control" rows="4" placeholder="{% trans 'How can we help you?' %}"></textarea>
+              {{ form.message.label_tag }}
+              {{ form.message }}
+              {% if form.message.errors %}
+                <span class="error">{{ form.message.errors|striptags }}</span>
+              {% endif %}
             </div>
-            <button type="submit" class="btn btn-tp w-100">{% trans "Send Message" %}</button>
-            <small class="text-muted mt-2 d-block">{% trans "*This is a prototype. Form will be functional in production." %}</small>
+
+            <div class="hp-wrapper">
+              {{ form.website }}
+            </div>
+            {{ form.timestamp }}
+
+            <button type="submit" class="btn-tp w-100">{% trans "Send Message" %}</button>
           </form>
         </div>
       </div>
